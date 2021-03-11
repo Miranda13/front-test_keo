@@ -12,7 +12,29 @@
             <h1> Welcome! </h1>
         </div>    
         <div class="card-body">
-            
+            <div class="row card-title">
+               <h2> Create new participant! </h2>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-vertical-stepper linear #stepper>
+                        <mat-step>
+                            
+                        </mat-step>
+                        <mat-step *ngFor="let spot of spots; index as x">
+                            <ng-template matStepLabel> {{spot}} </ng-template>
+                            <app-add-shot (validateForm)="informationShots($event, stepper, x)"></app-add-shot> 
+                        </mat-step>
+                        <mat-step>
+                            
+                        </mat-step>            
+                    </mat-vertical-stepper>  
+                    
+                </div>
+                <div class="col">
+                    <app-participants></app-participants>
+                </div>
+            </div>
         </div>
     </div>    
 </div>

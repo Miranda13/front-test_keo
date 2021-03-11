@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { MatStepper } from '@angular/material/stepper';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -8,11 +10,46 @@ import { Router } from '@angular/router';
 })
 export class MainComponent implements OnInit {
   
+  spots: any[]=[
+    'Spot 1',
+    'Spot 2',
+    'Spot 3',
+    'Spot 4',
+    'Spot 5',
+  ];
+
+  playerShots: any[]=[];
+    
   constructor(public auth: AngularFireAuth,
     private route: Router,) { }
 
   ngOnInit(): void {
-    
+    console.log(this.playerShots);    
+  }
+
+  informationShots(data: any, stepper: MatStepper, index: any)  {
+    let score = 0;
+    let shots: any;
+    for(let i=0; i<4; i++){
+      if (shots==undefined) {
+        shots= data[i];
+      } else{
+        shots=shots+data[i];
+      }
+      if (data[i]==1) {
+        score = score + 1;
+      } 
+    };
+    if (data[4]==1){
+      score = score + 2;
+    }
+    shots=shots+data[4];
+    this.playerShots[index+1]=shots;
+    this.goForward(stepper);
+  }
+
+  goForward(stepper: MatStepper){
+    stepper.next();
   }
 
   logout() {

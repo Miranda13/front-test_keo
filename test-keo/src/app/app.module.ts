@@ -15,6 +15,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatStepperModule } from '@angular/material/stepper';
+import { ParticipantsComponent } from './components/participants/participants.component';
+import { AddShotComponent } from './components/add-shot/add-shot.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     LoginComponent,
     MainComponent,
     RegisterComponent,
-    UpdateComponent
+    UpdateComponent,
+    ParticipantsComponent,
+    AddShotComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +39,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     AngularFirestoreModule,
     AngularFireAuthModule,
     FormsModule,
+    MatStepperModule,
     ReactiveFormsModule,
   ],
   providers: [],
