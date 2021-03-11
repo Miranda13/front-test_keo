@@ -7,7 +7,7 @@ Clone repository from git
 # clone the project
 git clone https://github.com/Miranda13/front-test_keo.git
 # enter the project directory
-cd front-test_keo
+cd front-test_keo/test-keo
 ```
 Run local server
 ```bash
