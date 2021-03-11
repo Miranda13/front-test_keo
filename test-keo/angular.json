@@ -123,6 +123,10 @@
               "devServerTarget": "test-keo:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

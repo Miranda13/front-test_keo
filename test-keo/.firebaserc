@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "test-keo-85e3d"
+  },
+  "targets": {
+    "test-keo-85e3d": {
+      "hosting": {
+        "test-keo": [
+          "test-keo-85e3d"
+        ]
+      }
+    }
+  }
+}
