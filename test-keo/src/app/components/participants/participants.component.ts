@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-participants',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParticipantsComponent implements OnInit {
 
-  constructor() { }
+  participants: any []= [];
+
+  constructor(private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
+    this.firestore.collection('participants').valueChanges()
+    .subscribe((participants)=>{
+      this.participants = <any[]>participants;
+    });
   }
 
 }

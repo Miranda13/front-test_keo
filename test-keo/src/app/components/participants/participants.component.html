@@ -1,1 +1,6 @@
-<p>participants works!</p>
+<div class="container">
+    <div *ngFor="let participant of participants">
+        <label class="p-2 m-2">{{participant.name}}</label>
+        <label class="p-2 m-2"> {{participant.score}}</label>
+    </div>
+</div>

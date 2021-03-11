@@ -19,18 +19,30 @@
                 <div class="col">
                     <mat-vertical-stepper linear #stepper>
                         <mat-step>
-                            <form [formGroup]="dataParticipant">
+                            <form [formGroup]="dataParticipant" (ngSubmit)="submit(dataParticipant.value, stepper)">
                                 <label for=""> Participant's name </label> <br>
                                 <input type="text" formControlName="name">
+                                <div class="row">
+                                    <small class="message" *ngIf="validation">Invalid (required max 20 characters only letters)*</small>
+                                </div>
+                                <div class="m-3 row d-flex justify-content-center">
+                                    <button class="btn btn-success" type="submit" >Submit</button>
+                                </div>
                             </form>
                         </mat-step>
                         <mat-step *ngFor="let spot of spots; index as x">
                             <ng-template matStepLabel> {{spot}} </ng-template>
                             <app-add-shot (validateForm)="informationShots($event, stepper, x)"></app-add-shot> 
                         </mat-step>
-                        <mat-step>
-                            
-                        </mat-step>            
+                        <mat-step>                            
+                            <label for="name"> Participant's name </label> <br>
+                            <input id="name" name="name" type="text" placeholder={{playerShots[0]}} disabled> <br>
+                            <label for="score"> Score </label> <br>
+                            <input name="score" id="score" type="text" placeholder={{finalScore}} disabled>
+                            <div class="m-3 row d-flex justify-content-center">
+                                <button class="btn btn-success" (click)="save()" >Create</button>
+                            </div>                    
+                        </mat-step>
                     </mat-vertical-stepper>  
                     
                 </div>
