@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container green-theme">
     <div class="card m-5 p-5 ">
         <div class="row">
             <div class="col py-2">
@@ -19,7 +19,10 @@
                 <div class="col">
                     <mat-vertical-stepper linear #stepper>
                         <mat-step>
-                            
+                            <form [formGroup]="dataParticipant">
+                                <label for=""> Participant's name </label> <br>
+                                <input type="text" formControlName="name">
+                            </form>
                         </mat-step>
                         <mat-step *ngFor="let spot of spots; index as x">
                             <ng-template matStepLabel> {{spot}} </ng-template>

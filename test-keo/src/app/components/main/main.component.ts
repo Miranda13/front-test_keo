@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { MatStepper } from '@angular/material/stepper';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -10,6 +11,8 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 })
 export class MainComponent implements OnInit {
   
+  dataParticipant: FormGroup;
+
   spots: any[]=[
     'Spot 1',
     'Spot 2',
@@ -21,10 +24,25 @@ export class MainComponent implements OnInit {
   playerShots: any[]=[];
     
   constructor(public auth: AngularFireAuth,
-    private route: Router,) { }
+    private route: Router,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    console.log(this.playerShots);    
+    this.dataParticipant = this.formBuilder.group({
+      name: ['', 
+      [ Validators.required,
+        Validators.maxLength(20),
+        Validators.pattern(/^[A-Z]+$/i)
+      ]
+    ]
+    })
+    this.changes();
+  }
+
+  changes() {
+    this.dataParticipant.statusChanges.subscribe((status)=>{
+      console.log(status);
+    })
   }
 
   informationShots(data: any, stepper: MatStepper, index: any)  {
